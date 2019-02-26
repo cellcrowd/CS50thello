@@ -1,10 +1,10 @@
 //Enable AI for player 1, boolean
 export const PLAYER_1_AI = false;
-//AI type from player 1, 'first', 'random', 'weighted_random', 'max_weight'
+//AI type for player 1, 'first', 'random', 'weighted_random', 'max_weight'
 export const PLAYER_1_AI_TYPE = 'random';
 //Enable AI for player 2, boolean
 export const PLAYER_2_AI = true;
-//AI type from player 2, 'first', 'random', 'weighted_random', 'max_weight'
+//AI type for player 2, 'first', 'random', 'weighted_random', 'max_weight'
 export const PLAYER_2_AI_TYPE = 'weighted_random';
 //Axis field count, even integer >= 6
 export const FIELDS = 8;
