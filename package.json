@@ -1,0 +1,25 @@
+{
+  "name": "CS50thello",
+  "version": "1.0.0",
+  "description": "Your average vanilla ES6 JS canvas othello game, created for a #CS50CodeReview",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webpack --mode production"
+  },
+  "author": "Danny van Geel <danny@flash-designer.nl> (http://www.flash-designer.nl)",
+  "license": "ISC",
+  "homepage": "https://github.com/cellcrowd/CS50thello",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cellcrowd/CS50thello.git"
+  },
+  "devDependencies": {
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.0",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5"
+  }
+}
