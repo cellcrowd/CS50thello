@@ -140,6 +140,7 @@ class Main {
 
     //Switch player
     this.currPlayer = (this.currPlayer == Chip.VALUE.PLAYER_1) ? Chip.VALUE.PLAYER_2 : Chip.VALUE.PLAYER_1;
+
     //Get valid moves
     this.validMoves = this.logic.getValidMoves(this.currPlayer);
 
@@ -188,6 +189,7 @@ class Main {
     this.ctx.lineWidth = Config.SCORE_BAR_HEIGHT;
 
     this.ctx.strokeStyle = Config.PLAYER_1_COLOR;
+    //Blink bar when win or draw
     if(this.winner == Chip.VALUE.PLAYER_1 || this.winner == Chip.VALUE.NONE) this.ctx.globalAlpha = (1 + Math.sin(currTime / 100)) * .5;
     this.ctx.beginPath();
       this.ctx.moveTo(Config.BORDER_SIZE, this.canvas.height - Config.SCORE_BAR_HEIGHT + Config.SCORE_BAR_HEIGHT * .5);
@@ -196,6 +198,7 @@ class Main {
     this.ctx.globalAlpha = 1;
 
     this.ctx.strokeStyle = Config.PLAYER_2_COLOR;
+    //Blink bar when win or draw
     if(this.winner == Chip.VALUE.PLAYER_2 || this.winner == Chip.VALUE.NONE) this.ctx.globalAlpha = (1 + Math.sin(currTime / 100)) * .5;
     this.ctx.beginPath();
       this.ctx.moveTo(Config.BORDER_SIZE + SCORE_1_WIDTH, this.canvas.height - Config.SCORE_BAR_HEIGHT + Config.SCORE_BAR_HEIGHT * .5);
