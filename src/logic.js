@@ -125,23 +125,12 @@ export default class Logic {
     return this.main.chips[fieldY] && this.main.chips[fieldY][fieldX];
   }
 
-  get player1Score() {
+  getScore(value) {
 
     let score = 0;
 
     this.main.chips.forEach(row => row.forEach(chip => {
-      if(chip.value == Chip.VALUE.PLAYER_1) score++;
-    }));
-
-    return score;
-  }
-
-  get player2Score() {
-
-    let score = 0;
-
-    this.main.chips.forEach(row => row.forEach(chip => {
-      if(chip.value == Chip.VALUE.PLAYER_2) score++;
+      if(chip.value == value) score++;
     }));
 
     return score;

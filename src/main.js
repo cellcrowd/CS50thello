@@ -64,6 +64,9 @@ class Main {
     //Reset player state
     this.currPlayer = Chip.VALUE.PLAYER_1;
 
+    //Reset winner
+    this.winner = null;
+
     //Reset chips state
     this.chips.forEach(row => row.forEach(chip => chip.value = chip.state = Chip.VALUE.NONE));
 
@@ -103,6 +106,9 @@ class Main {
     //Can't play while AI is playing
     if(this.ai.playing) return;
 
+    //Reset game when it was ended
+    if(this.winner) return this.reset();
+
     //Convert screen coordinates to field coordinates
     const FIELD_SIZE = Config.FIELD_SIZE + Config.BORDER_SIZE;
     //Account for the fact that stroke coordinates on canvas are centered at 0.5
@@ -137,15 +143,15 @@ class Main {
     //Get valid moves
     this.validMoves = this.logic.getValidMoves(this.currPlayer);
 
+    const SCORE_1 = this.logic.getScore(Chip.VALUE.PLAYER_1);
+    const SCORE_2 = this.logic.getScore(Chip.VALUE.PLAYER_2);
+
     //Check for game end
-    if(!this.validMoves.length) {
-      if(this.logic.player1Score == this.logic.player2Score) this.winner = Chip.VALUE.NONE;
-      else if(this.logic.player1Score > this.logic.player2Score) this.winner = Chip.VALUE.PLAYER_1;
-      else this.winner = Chip.VALUE.PLAYER_2;
-    }else this.checkAIMove();
+    if(!this.validMoves.length) this.winner = (SCORE_1 == SCORE_2) ? Chip.VALUE.NONE : (SCORE_1 > SCORE_2 ? Chip.VALUE.PLAYER_1 : Chip.VALUE.PLAYER_2);
+    else this.checkAIMove();
 
     //Update score bar
-    this.score.animation = new Animation(this.score, "ratio", this.logic.player1Score / (this.logic.player1Score + this.logic.player2Score), 500, 0, Animation.EASE.INOUT_QUAD);
+    this.score.animation = new Animation(this.score, "ratio", SCORE_1 / (SCORE_1 + SCORE_2), 500, 0, Animation.EASE.INOUT_QUAD);
   }
 
   update(currTime) {
